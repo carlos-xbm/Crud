@@ -1,0 +1,64 @@
+﻿@model List<Insumo>
+@if (TempData["MensagemSucesso"] != null)
+{
+    <div class="alert alert-success text-dark" role="alert">
+        @TempData["MensagemSucesso"]
+    </div>
+}
+@if (TempData["MensagemErro"] != null)
+{
+    <div class="alert alert-danger text-dark" role="alert">
+        @TempData["MensagemErro"]
+    </div>
+}
+
+
+<div class="container">
+    <div class="d-flex justify-content-between align-items-center">
+        <h1>Registro de Insumos</h1>
+        <a asp-action="Cadastrar" asp-controller="Insumos" class="btn btn-success">Cadastrar Insumo</a>
+    </div>
+    <table class="table table-hover table-bordered mt-5">
+        <thead class="table-dark">
+            <tr>
+                <th>Id</th>
+                <th>Nome</th>
+                <th>Fornecedor</th>
+                <th>NF</th>
+                <th>Lote</th>
+                <th>Quantidade</th>
+                <th>Fabricação</th>
+                <th>Vencimento</th>
+                <th>Entrada</th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            @if (Model.Count() > 0)
+            {
+                @foreach (var insumo in Model)
+                {
+                    <tr>
+                        <td>@insumo.Id</td>
+                        <td>@insumo.Nome</td>
+                        <td>@insumo.Fornecedor</td>
+                        <td>@insumo.NF</td>
+                        <td>@insumo.Lote</td>
+                        <td>@insumo.Quantidade</td>
+                        <td>@insumo.Fabricacao.ToString("dd/MM/yyyy")</td>
+                        <td>@insumo.Vencimento.ToString("dd/MM/yyyy")</td>
+                        <td>@insumo.Entrada.ToString("dd/MM/yyyy")</td>
+                        <td>
+                            <a asp-action="Detalhes" asp-controller="Insumos" asp-route-id="@insumo.Id" class="btn btn-warning">Detalhes</a>
+                            <a asp-action="Editar" asp-controller="Insumos" asp-route-id="@insumo.Id" class="btn btn-info">Editar</a>
+                            <a asp-action="Remover" asp-controller="Insumos" asp-route-id="@insumo.Id" class="btn btn-danger">Remover</a>
+                        </td>
+                    </tr>
+                }
+            }
+
+
+        </tbody>
+    </table>
+
+</div>
