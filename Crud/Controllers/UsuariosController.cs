@@ -68,7 +68,7 @@ public class UsuariosController : Controller
 
 
     [HttpPost]
-    public IActionResult Cadastrar(Usuario usuario)
+    public IActionResult Cadastrar(UsuarioModel usuario)
     {
         if (ModelState.IsValid)
         {
@@ -92,7 +92,7 @@ public class UsuariosController : Controller
     }
 
     [HttpPost]
-    public IActionResult Editar(Usuario usuario)
+    public IActionResult Editar(UsuarioModel usuario)
     {
         if (ModelState.IsValid)
         {

@@ -2,7 +2,7 @@
 
 namespace Crud.Models
 {
-    public class Insumo
+    public class InsumoModel
     {
         [Key]
         public int Id { get; set; }

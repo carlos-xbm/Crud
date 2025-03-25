@@ -23,9 +23,9 @@ namespace Crud.Data
 
         }
 
-        public List<Usuario> ListarUsuarios()
+        public List<UsuarioModel> ListarUsuarios()
         {
-            List<Usuario> usuarios = new List<Usuario>();
+            List<UsuarioModel> usuarios = new List<UsuarioModel>();
             using (_connection = new SqlConnection(GetConnectionString()))
             {
                 _command = _connection.CreateCommand();
@@ -37,7 +37,7 @@ namespace Crud.Data
 
                 while (reader.Read())
                 {
-                    Usuario usuario = new Usuario();
+                    UsuarioModel usuario = new UsuarioModel();
 
                     usuario.Id = Convert.ToInt32(reader["Id"]);
                     usuario.Nome = reader["Nome"].ToString();
@@ -53,7 +53,7 @@ namespace Crud.Data
             return usuarios;
         }
 
-        public bool Cadastrar(Usuario usuario)
+        public bool Cadastrar(UsuarioModel usuario)
         {
             int id = 0;
             using (_connection = new SqlConnection(GetConnectionString()))
@@ -75,9 +75,9 @@ namespace Crud.Data
             return id > 0 ? true : false;
         }
 
-        public Usuario BuscarUsuarioPorId(int id)
+        public UsuarioModel BuscarUsuarioPorId(int id)
         {
-            Usuario usuario = new Usuario();
+            UsuarioModel usuario = new UsuarioModel();
             using (_connection = new SqlConnection(GetConnectionString()))
             {
                 _command = _connection.CreateCommand();
@@ -103,7 +103,7 @@ namespace Crud.Data
             return usuario;
         }
 
-        public bool Editar(Usuario usuario)
+        public bool Editar(UsuarioModel usuario)
         {
             var id = 0;
             using (_connection = new SqlConnection(GetConnectionString()))

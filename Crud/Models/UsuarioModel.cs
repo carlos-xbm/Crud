@@ -1,7 +1,7 @@
 ﻿using System.ComponentModel.DataAnnotations;
 namespace Crud.Models
 {
-    public class Usuario
+    public class UsuarioModel
     {
         [Key]
         public int Id { get; set; }

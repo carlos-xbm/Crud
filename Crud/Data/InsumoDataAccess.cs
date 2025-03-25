@@ -19,9 +19,9 @@ namespace Crud.Data
             return Configuration.GetConnectionString("DefaultConnection");
         }
 
-        public List<Insumo> ListarInsumos()
+        public List<InsumoModel> ListarInsumos()
         {
-            List<Insumo> insumos = new List<Insumo>();
+            List<InsumoModel> insumos = new List<InsumoModel>();
             using (_connetion = new SqlConnection(GetConnectionString()))
             {
                 _command = _connetion.CreateCommand();
@@ -32,7 +32,7 @@ namespace Crud.Data
 
                 while (reader.Read())
                 {
-                    Insumo insumo = new Insumo();
+                    InsumoModel insumo = new InsumoModel();
 
                     insumo.Id = Convert.ToInt32(reader["Id"]);
                     insumo.Nome = reader["Nome"].ToString();
@@ -51,7 +51,7 @@ namespace Crud.Data
             return insumos;
         }
 
-        public bool Cadastrar(Insumo insumo)
+        public bool Cadastrar(InsumoModel insumo)
         {
             int id = 0;
             using (_connetion = new SqlConnection(GetConnectionString()))
@@ -76,9 +76,9 @@ namespace Crud.Data
             return id > 0 ? true : false;
         }
 
-        public Insumo BuscarInsumoPorId(int id)
+        public InsumoModel BuscarInsumoPorId(int id)
         {
-            Insumo insumo = new Insumo();
+            InsumoModel insumo = new InsumoModel();
             using (_connetion = new SqlConnection(GetConnectionString()))
             {
                 _command = _connetion.CreateCommand();
@@ -109,7 +109,7 @@ namespace Crud.Data
             return insumo;
         }
 
-        public bool Editar(Insumo insumo)
+        public bool Editar(InsumoModel insumo)
         {
             var id = 0;
             using (_connetion = new SqlConnection(GetConnectionString()))

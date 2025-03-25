@@ -62,7 +62,7 @@ public class InsumosController : Controller
 
 
     [HttpPost]
-    public IActionResult Cadastrar(Insumo insumo)
+    public IActionResult Cadastrar(InsumoModel insumo)
     {
         if (ModelState.IsValid)
         {
@@ -88,7 +88,7 @@ public class InsumosController : Controller
     }
 
     [HttpPost]
-    public IActionResult Editar(Insumo insumo)
+    public IActionResult Editar(InsumoModel insumo)
     {
         if (ModelState.IsValid)
         {
