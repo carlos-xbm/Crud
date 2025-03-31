@@ -1,4 +1,5 @@
-﻿using Crud.Models;
+﻿using Crud.Enums;
+using Crud.Models;
 using System.Data.SqlClient;
 
 
@@ -41,9 +42,18 @@ namespace Crud.Data
 
                     usuario.Id = Convert.ToInt32(reader["Id"]);
                     usuario.Nome = reader["Nome"].ToString();
+                    usuario.LoginUsuario = reader["LoginUsuario"].ToString();
                     usuario.Email = reader["Email"].ToString();
-                    usuario.Cargo = reader["Cargo"].ToString();
-                    usuario.Sobrenome = reader["Sobrenome"].ToString();
+                    usuario.DataCadastro = Convert.ToDateTime(reader["DataCadastro"]).Date;
+                    if (reader["DataAtualizacao"] != DBNull.Value)
+                    {
+                        usuario.DataAtualizacao = Convert.ToDateTime(reader["DataAtualizacao"]).Date;
+                    }
+                    else
+                    {
+                        usuario.DataAtualizacao = null; // Atribuindo null
+                    }
+                    usuario.Perfil = (PerfilEnum)Enum.Parse(typeof(PerfilEnum), reader["Perfil"].ToString());
 
                     usuarios.Add(usuario);
                 }
@@ -63,9 +73,11 @@ namespace Crud.Data
                 _command.CommandText = "[DBO].[inserir_usuario]";
 
                 _command.Parameters.AddWithValue("@Nome", usuario.Nome);
-                _command.Parameters.AddWithValue("@Sobrenome", usuario.Sobrenome);
+                _command.Parameters.AddWithValue("@LoginUsuario", usuario.LoginUsuario);
                 _command.Parameters.AddWithValue("@Email", usuario.Email);
-                _command.Parameters.AddWithValue("@Cargo", usuario.Cargo);
+                _command.Parameters.AddWithValue("@Senha", usuario.Senha);
+                _command.Parameters.AddWithValue("@Perfil", usuario.Perfil.ToString());
+
 
                 _connection.Open();
                 id = _command.ExecuteNonQuery();
@@ -93,9 +105,11 @@ namespace Crud.Data
                 {
                     usuario.Id = Convert.ToInt32(reader["Id"]);
                     usuario.Nome = reader["Nome"].ToString();
-                    usuario.Sobrenome = reader["Sobrenome"].ToString();
-                    usuario.Cargo = reader["Cargo"].ToString();
+                    usuario.LoginUsuario = reader["LoginUsuario"].ToString();
                     usuario.Email = reader["Email"].ToString();
+                    usuario.DataCadastro = Convert.ToDateTime(reader["DataCadastro"]).Date;
+                    usuario.DataAtualizacao = Convert.ToDateTime(reader["DataAtualizacao"]).Date;
+                    usuario.Perfil = (PerfilEnum)Enum.Parse(typeof(PerfilEnum), reader["Perfil"].ToString());
                 }
                 _connection.Close();
             }
@@ -111,11 +125,15 @@ namespace Crud.Data
                 _command = _connection.CreateCommand();
                 _command.CommandType = System.Data.CommandType.StoredProcedure;
                 _command.CommandText = "[DBO].[editar_usuario]";
-                _command.Parameters.AddWithValue("@Id", usuario.Id);
+
+                _command.Parameters.AddWithValue("id", usuario.Id);
                 _command.Parameters.AddWithValue("@Nome", usuario.Nome);
-                _command.Parameters.AddWithValue("@Sobrenome", usuario.Sobrenome);
+                _command.Parameters.AddWithValue("@LoginUsuario", usuario.LoginUsuario);
                 _command.Parameters.AddWithValue("@Email", usuario.Email);
-                _command.Parameters.AddWithValue("@Cargo", usuario.Cargo);
+                _command.Parameters.AddWithValue("@Senha", usuario.Senha);
+                _command.Parameters.AddWithValue("@DataCadastro", usuario.DataCadastro);
+                _command.Parameters.AddWithValue("@DataAtualizacao", usuario.DataAtualizacao);
+                _command.Parameters.AddWithValue("@Perfil", usuario.Perfil);
 
                 _connection.Open();
 

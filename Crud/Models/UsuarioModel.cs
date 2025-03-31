@@ -1,4 +1,6 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using Crud.Enums;
+using System.ComponentModel.DataAnnotations;
+
 namespace Crud.Models
 {
     public class UsuarioModel
@@ -6,17 +8,19 @@ namespace Crud.Models
         [Key]
         public int Id { get; set; }
 
-        [Required(ErrorMessage = "Digite o nome!")]
         public string Nome { get; set; }
 
-        [Required(ErrorMessage = "Digite o sobrenome!")]
-        public string Sobrenome { get; set; }
+        public string LoginUsuario { get; set; }
 
-        [Required(ErrorMessage = "Digite o Email!"),
-        EmailAddress(ErrorMessage ="Email incorreto!")]
         public string Email { get; set; }
+                
+        public string Senha { get; set; }
 
-        [Required(ErrorMessage = "Digite o cargo!")]
-        public string Cargo { get; set; }
+        public DateTime? DataCadastro { get; set; }
+
+        public DateTime? DataAtualizacao { get; set; }
+
+        public PerfilEnum Perfil { get; set; }
+
     }
 }

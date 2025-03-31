@@ -1,8 +1,6 @@
-using System.Diagnostics;
-using Crud.Data;
+ï»¿using Crud.Data;
 using Crud.Models;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.SqlServer.Server;
 
 namespace Crud.Controllers;
 
@@ -24,7 +22,7 @@ public class UsuariosController : Controller
         }
         catch (Exception ex)
         {
-            TempData["MensagenErro"] = "Ocorreu um erro na criação do usuário";
+            TempData["MensagenErro"] = "Ocorreu um erro na criaÃ§Ã£o do Usuario";
             return View();
 
         }
@@ -37,7 +35,7 @@ public class UsuariosController : Controller
         return View();
     }
 
-    public IActionResult Editar( int id)
+    public IActionResult Editar(int id)
     {
         var usuario = _dataAccess.BuscarUsuarioPorId(id);
         return View(usuario);
@@ -54,11 +52,11 @@ public class UsuariosController : Controller
         var result = _dataAccess.Remover(id);
         if (result)
         {
-            TempData["MensagemSucesso"] = "Usuário removido com sucesso!";
+            TempData["MensagemSucesso"] = "Usuario removido com sucesso!";
         }
         else
         {
-            TempData["MensagemErro"] = "Ocorreu um erro na remoção so usuário!";
+            TempData["MensagemErro"] = "Ocorreu um erro na remoÃ§Ã£o so Usuario!";
         }
         return RedirectToAction("Index");
     }
@@ -73,15 +71,15 @@ public class UsuariosController : Controller
         if (ModelState.IsValid)
         {
             var result = _dataAccess.Cadastrar(usuario);
-            
-            if(result)
+
+            if (result)
             {
-                TempData["MensagemSucesso"] = "Usuário criado com sucesso!";
+                TempData["MensagemSucesso"] = "Usuario criado com sucesso!";
                 return RedirectToAction("Index");
             }
             else
             {
-                TempData["MensagemErro"] = "Ocorreu um erro na criação do usuário!";
+                TempData["MensagemErro"] = "Ocorreu um erro na criaÃ§Ã£o do Usuario!";
                 return View(usuario);
             }
         }
@@ -99,22 +97,19 @@ public class UsuariosController : Controller
             var result = _dataAccess.Editar(usuario);
             if (result)
             {
-                TempData["MensagemSucesso"] = "Usuário editado com sucesso!";
+                TempData["MensagemSucesso"] = "Usuario editado com sucesso!";
                 return RedirectToAction("Index");
             }
             else
             {
-                TempData["MensagemErro"] = "Ocorreu um erro na edição do usuário";
+                TempData["MensagemErro"] = "Ocorreu um erro na ediÃ§Ã£o do Usuario";
                 return View(usuario);
             }
         }
         else
         {
-            TempData["MensagemErro"] = "Ocorreu um erro na edição so usuário";
+            TempData["MensagemErro"] = "Ocorreu um erro na ediÃ§Ã£o so Usuario";
             return View(usuario);
         }
     }
-
-
-
 }

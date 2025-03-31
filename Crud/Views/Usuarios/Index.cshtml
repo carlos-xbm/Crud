@@ -17,16 +17,18 @@
 <div class="container">
     <div class="d-flex justify-content-between align-items-center">
         <h1>Registro de usuários</h1>
-        <a asp-action="Cadastrar" asp-controller="Usuarios" class="btn btn-success">Cadastrar Usuários</a>
+        <a asp-action="Cadastrar" asp-controller="Usuarios" class="btn btn-success">Cadastrar Usuário</a>
     </div>
     <table class="table table-hover table-bordered mt-5" id="myTable">
         <thead class="table-dark">
             <tr>
                 <th>Id</th>
                 <th>Nome</th>
-                <th>Sobrenome</th>
+                <th>Login de Usuário</th>
                 <th>Email</th>
-                <th>Cargo</th>
+                <th>Data de Cadastro</th>
+                <th>Data de Atualizacao</th>
+                <th>Perfil</th>
                 <th></th>
             </tr>
         </thead>
@@ -38,11 +40,12 @@
                     <tr>
                         <td>@usuario.Id</td>
                         <td>@usuario.Nome</td>
-                        <td>@usuario.Sobrenome</td>
+                        <td>@usuario.LoginUsuario</td>
                         <td>@usuario.Email</td>
-                        <td>@usuario.Cargo</td>
+                        <td>@usuario.DataCadastro</td>
+                        <td>@usuario.DataAtualizacao</td>
+                        <td>@usuario.Perfil</td>
                         <td>
-                            <a asp-action="Detalhes" asp-controller="Usuarios" asp-route-id="@usuario.Id" class="btn btn-warning">Detalhes</a>
                             <a asp-action="Editar" asp-controller="Usuarios" asp-route-id="@usuario.Id" class="btn btn-info">Editar</a>
                             <a asp-action="Remover" asp-controller="Usuarios" asp-route-id="@usuario.Id" class="btn btn-danger">Remover</a>
                         </td>
