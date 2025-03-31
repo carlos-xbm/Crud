@@ -30,7 +30,7 @@
                 <th>Fabricação</th>
                 <th>Vencimento</th>
                 <th>Entrada</th>
-                <th></th>
+                <th class="align-content-center"></th>
             </tr>
         </thead>
         <tbody>
@@ -48,8 +48,7 @@
                         <td>@insumo.Fabricacao.ToString("dd/MM/yyyy")</td>
                         <td>@insumo.Vencimento.ToString("dd/MM/yyyy")</td>
                         <td>@insumo.Entrada.ToString("dd/MM/yyyy")</td>
-                        <td>
-                            <a asp-action="Detalhes" asp-controller="Insumos" asp-route-id="@insumo.Id" class="btn btn-warning">Detalhes</a>
+                        <td class="text-center">
                             <a asp-action="Editar" asp-controller="Insumos" asp-route-id="@insumo.Id" class="btn btn-info">Editar</a>
                             <a asp-action="Remover" asp-controller="Insumos" asp-route-id="@insumo.Id" class="btn btn-danger">Remover</a>
                         </td>
