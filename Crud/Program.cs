@@ -1,12 +1,15 @@
 using Crud.Data;
+using Microsoft.AspNetCore.Connections;
+using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 builder.Services.AddControllersWithViews();
 
-builder.Services.AddScoped<UsuarioDataAccess>();
+builder.Services.AddScoped<ContatoDataAccess>();
 builder.Services.AddScoped<InsumoDataAccess>();
+builder.Services.AddScoped<UsuarioDataAccess>();
 
 var app = builder.Build();
 
