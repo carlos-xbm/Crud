@@ -29,7 +29,7 @@
                 <th>Data de Cadastro</th>
                 <th>Data de Atualizacao</th>
                 <th>Perfil</th>
-                <th></th>
+                <th class="align-content-center"></th>
             </tr>
         </thead>
         <tbody>
@@ -42,8 +42,8 @@
                         <td>@usuario.Nome</td>
                         <td>@usuario.LoginUsuario</td>
                         <td>@usuario.Email</td>
-                        <td>@usuario.DataCadastro</td>
-                        <td>@usuario.DataAtualizacao</td>
+                        <td>@(usuario.DataCadastro?.ToString("dd/MM/yyyy") ?? "")</td>
+                        <td>@(usuario.DataAtualizacao?.ToString("dd/MM/yyyy")?? "")</td>
                         <td>@usuario.Perfil</td>
                         <td>
                             <a asp-action="Editar" asp-controller="Usuarios" asp-route-id="@usuario.Id" class="btn btn-info">Editar</a>
