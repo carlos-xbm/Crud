@@ -2,7 +2,7 @@
 {
     public enum PerfilEnum
     {
-        Admin = 1,
-        Padrao = 2,
+        Admin = 0,
+        Padrao = 1,
     }
 }
