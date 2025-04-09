@@ -107,8 +107,6 @@ namespace Crud.Data
                     usuario.Nome = reader["Nome"].ToString();
                     usuario.LoginUsuario = reader["LoginUsuario"].ToString();
                     usuario.Email = reader["Email"].ToString();
-                    usuario.DataCadastro = Convert.ToDateTime(reader["DataCadastro"]).Date;
-                    usuario.DataAtualizacao = Convert.ToDateTime(reader["DataAtualizacao"]).Date;
                     usuario.Perfil = (PerfilEnum)Enum.Parse(typeof(PerfilEnum), reader["Perfil"].ToString());
                 }
                 _connection.Close();
@@ -130,10 +128,9 @@ namespace Crud.Data
                 _command.Parameters.AddWithValue("@Nome", usuario.Nome);
                 _command.Parameters.AddWithValue("@LoginUsuario", usuario.LoginUsuario);
                 _command.Parameters.AddWithValue("@Email", usuario.Email);
-                _command.Parameters.AddWithValue("@Senha", usuario.Senha);
-                _command.Parameters.AddWithValue("@DataCadastro", usuario.DataCadastro);
-                _command.Parameters.AddWithValue("@DataAtualizacao", usuario.DataAtualizacao);
-                _command.Parameters.AddWithValue("@Perfil", usuario.Perfil);
+                _command.Parameters.AddWithValue("@Senha",
+                         string.IsNullOrWhiteSpace(usuario.Senha) ? DBNull.Value : usuario.Senha);
+                _command.Parameters.AddWithValue("@Perfil", usuario.Perfil.ToString());
 
                 _connection.Open();
 
